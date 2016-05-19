@@ -228,6 +228,7 @@ class Builder extends LTool
             "Build completed with #{errors.length} errors and #{warnings.length} warnings"
           )
 
-        # Jump to PDF
-        @ltConsole.addContent("Jumping to PDF...")
-        @viewer.jumpToPdf(te)
+        if atom.config.get("latextools.forwardSync")
+          # Jump to PDF
+          @ltConsole.addContent("Jumping to PDF...")
+          @viewer.jumpToPdf(te)
