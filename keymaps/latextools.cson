@@ -29,6 +29,7 @@
   'ctrl-l n': 'latextools:insert-environment'
   'ctrl-l ctrl-c': 'latextools:wrap-in-command'
   'ctrl-l ctrl-n': 'latextools:wrap-in-environment'
+  'ctrl-l ctrl-shift-n': 'latextools:change-environment'
   'ctrl-l ctrl-e': 'latextools:wrap-in-emph'
   'ctrl-l ctrl-b': 'latextools:wrap-in-bold'
   'ctrl-l ctrl-u': 'latextools:wrap-in-underline'

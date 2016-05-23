@@ -245,6 +245,9 @@ module.exports = Latextools =
     @subscriptions.add atom.commands.add 'atom-text-editor', 'latextools:wrap-in-command': =>
       @requireIfNeeded ['snippet-manager']
       @snippetManager.wrapInCommand()
+    @subscriptions.add atom.commands.add 'atom-text-editor', 'latextools:change-environment': =>
+      changeEnvironment = require './commands/change-environment'
+      changeEnvironment()
     @subscriptions.add atom.commands.add 'atom-text-editor', 'latextools:wrap-in-environment': =>
       @requireIfNeeded ['snippet-manager']
       @snippetManager.wrapInEnvironment()
