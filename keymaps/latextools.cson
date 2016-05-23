@@ -50,6 +50,7 @@
   'cmd-l n': 'latextools:insert-environment'
   'cmd-l cmd-c': 'latextools:wrap-in-command'
   'cmd-l cmd-n': 'latextools:wrap-in-environment'
+  'cmd-l cmd-shift-n': 'latextools:change-environment'
   'cmd-l cmd-e': 'latextools:wrap-in-emph'
   'cmd-l cmd-b': 'latextools:wrap-in-bold'
   'cmd-l cmd-u': 'latextools:wrap-in-underline'
