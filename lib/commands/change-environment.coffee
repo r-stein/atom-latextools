@@ -21,54 +21,54 @@ module.exports = () ->
 
     cursorEnv.forEach (envObj) ->
       # if the environment is still before the cursor
-      if envObj["cursor"].isGreaterThan(envBorder)
+      if envObj.cursor.isGreaterThan(envBorder)
         if isBegin
           # push opening environments on the stack
-          envObj["stack"].push([name, range])
+          envObj.stack.push([name, range])
         else
           # pop closing environments from the stack
-          envObj["stack"].pop()
+          envObj.stack.pop()
       # if the environment is behind the cursor, but the end has not been found
-      else if !envObj["end"]?
+      else if !envObj.end?
         # if we are the first time behind the cursor
         # pop and insert the last environment name
-        if !envObj["begin"]?
+        if !envObj.begin?
           try
-            [popName, popRange] = envObj["stack"].pop()
+            [popName, popRange] = envObj.stack.pop()
           catch
             # if the stack was empty keep the cursor
-            envObj["end"] = [envObj["cursor"], envObj["cursor"]]
+            envObj.end = [envObj.cursor, envObj.cursor]
             atom.notifications.addWarning(
               "Cannot detect the surrounding environment for one cursor."
             )
             return
-          envObj["begin"] = popRange
-          envObj["beginName"] = popName
+          envObj.begin = popRange
+          envObj.beginName = popName
           # reset the environment stack
-          envObj["stack"] = []
+          envObj.stack = []
 
         if isBegin
           # push the opening environments on the stack
-          envObj["stack"].push(name)
-        else if envObj["stack"].length
+          envObj.stack.push(name)
+        else if envObj.stack.length
           # if the are opening environments, pop them from the stack
-          envObj["stack"].pop()
+          envObj.stack.pop()
         else
-          envObj["end"] = range
-          if envObj["beginName"] != name
+          envObj.end = range
+          if envObj.beginName != name
             atom.notifications.addWarning(
               "Environment '#{envObj.beginName}' and '#{name}' are not matching."
             )
-            delete envObj["begin"]
-            envObj["end"] = [envObj["cursor"], envObj["cursor"]]
+            delete envObj.begin
+            envObj.end = [envObj.cursor, envObj.cursor]
           else
 
     # if every env has an end, we are done
-    if (cursorEnv.every (x) -> x["end"]?)
+    if (cursorEnv.every (x) -> x.end?)
       matchObj.stop()
   )
   # retrieve the selections
-  sels = [].concat.apply([], ([x["begin"], x["end"]] for x in cursorEnv))
+  sels = [].concat.apply([], ([x.begin, x.end] for x in cursorEnv))
   # filter undefined/invalid cursors (missing ends...)
   sels = sels.filter (x) -> x
   # set the selections in the
