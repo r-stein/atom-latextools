@@ -73,3 +73,4 @@ module.exports = () ->
   sels = sels.filter (x) -> x
   # set the selections in the
   te.setSelectedBufferRanges(sels)
+  te.scrollToBufferPosition(sels[0][0]) if sels.length
