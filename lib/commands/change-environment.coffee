@@ -54,7 +54,6 @@ module.exports = () ->
           # if the are opening environments, pop them from the stack
           envObj.stack.pop()
         else
-          envObj.end = range
           if envObj.beginName != name
             atom.notifications.addWarning(
               "Environment '#{envObj.beginName}' and '#{name}' are not matching."
@@ -62,6 +61,7 @@ module.exports = () ->
             delete envObj.begin
             envObj.end = [envObj.cursor, envObj.cursor]
           else
+            envObj.end = range
 
     # if every env has an end, we are done
     if (cursorEnv.every (x) -> x.end?)
